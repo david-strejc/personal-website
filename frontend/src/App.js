@@ -266,7 +266,7 @@ function App() {
                   width: '100%', 
                   maxWidth: '419px', 
                   height: '621px',
-                  backgroundImage: 'url("/david_main.png")',
+                  backgroundImage: 'url("/foto.png")',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
