@@ -195,22 +195,22 @@ function App() {
 
           <div className="reveal md:col-span-5 z-10 order-1 md:order-2 mb-8 md:mb-0">
             <div className="relative mx-auto max-w-md">
-              {/* SVG Mask/Frame */}
-              <div className="absolute -inset-4 bg-gradient-primary rounded-[60px_35px_60px_35px] rotate-3 opacity-70 blur-lg animate-pulse-slow"></div>
-              <div className="absolute -inset-4 bg-gradient-primary rounded-[35px_60px_35px_60px] -rotate-3 opacity-70 blur-lg animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+              {/* SVG Mask/Frame - mírnější glowing efekt */}
+              <div className="absolute -inset-4 bg-gradient-primary rounded-[60px_35px_60px_35px] rotate-3 opacity-30 blur-lg animate-pulse-slow"></div>
+              <div className="absolute -inset-4 bg-gradient-primary rounded-[35px_60px_35px_60px] -rotate-3 opacity-30 blur-lg animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
               
               {/* White Background with SVG Clip Path */}
-              <div className="relative bg-white p-2 rounded-[40px_25px_40px_25px] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-light/20 to-secondary-light/20"></div>
+              <div className="relative bg-white p-2 rounded-[40px_25px_40px_25px] overflow-hidden shadow-md">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-light/10 to-secondary-light/10"></div>
                 
                 {/* SVG Decorative Elements */}
-                <svg className="absolute top-0 left-0 text-primary/10" width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
+                <svg className="absolute top-0 left-0 text-primary/5" width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
                   <circle cx="15" cy="15" r="10" />
                   <circle cx="40" cy="40" r="15" />
                   <circle cx="80" cy="20" r="8" />
                 </svg>
                 
-                <svg className="absolute bottom-0 right-0 text-secondary/10" width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
+                <svg className="absolute bottom-0 right-0 text-secondary/5" width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
                   <circle cx="85" cy="85" r="10" />
                   <circle cx="60" cy="60" r="15" />
                   <circle cx="20" cy="80" r="8" />
