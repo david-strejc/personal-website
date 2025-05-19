@@ -145,18 +145,25 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="hero min-h-screen flex items-center relative">
-        <div className="absolute inset-0 -top-20 md:-top-48 lg:-top-60 z-0 h-[80vh] overflow-visible">
+        <div className="absolute inset-0 top-[300px] z-0 h-[500px] md:h-[600px] overflow-hidden">
           <img 
             src="/david_main.png" 
             alt="David Strejc" 
-            className="w-full h-auto object-contain object-top"
+            className="w-full h-full object-cover object-top"
             style={{
-              maxHeight: '120vh',
-              objectPosition: 'center 15%'
+              position: 'fixed',
+              top: '300px',
+              left: '0',
+              right: '0',
+              width: '100%',
+              height: '600px',
+              objectFit: 'cover',
+              objectPosition: 'center 10%',
+              zIndex: '-1'
             }}
           />
         </div>
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-transparent to-dark"></div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-dark via-dark/90 to-dark"></div>
         <div className="tech-shape tech-shape-1"></div>
         <div className="tech-shape tech-shape-2"></div>
         <div className="section hero-content grid md:grid-cols-12 gap-10 items-center mt-[35vh] md:mt-[40vh]">
