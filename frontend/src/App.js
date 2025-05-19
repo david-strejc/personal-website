@@ -145,17 +145,22 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="hero min-h-screen flex items-center relative">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 -top-20 md:-top-48 lg:-top-60 z-0 h-[80vh] overflow-visible">
           <img 
             src="/david_main.png" 
             alt="David Strejc" 
-            className="w-full h-full object-cover object-top"
+            className="w-full h-auto object-contain object-top"
+            style={{
+              maxHeight: '120vh',
+              objectPosition: 'center 15%'
+            }}
           />
         </div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-transparent to-dark"></div>
         <div className="tech-shape tech-shape-1"></div>
         <div className="tech-shape tech-shape-2"></div>
-        <div className="section hero-content grid md:grid-cols-12 gap-10 items-center">
-          <div className="reveal md:col-span-7 z-10">
+        <div className="section hero-content grid md:grid-cols-12 gap-10 items-center mt-[35vh] md:mt-[40vh]">
+          <div className="reveal md:col-span-8 lg:col-span-7 z-10">
             <div className="glass p-8 md:p-12 rounded-2xl">
               <span className="badge mb-4">AI Konzultant & Expert</span>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
