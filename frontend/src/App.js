@@ -145,29 +145,11 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="hero min-h-screen flex items-center relative">
-        <div className="absolute inset-0 top-[300px] z-0 h-[500px] md:h-[600px] overflow-hidden">
-          <img 
-            src="/david_main.png" 
-            alt="David Strejc" 
-            className="w-full h-full object-cover object-top"
-            style={{
-              position: 'fixed',
-              top: '300px',
-              left: '0',
-              right: '0',
-              width: '100%',
-              height: '600px',
-              objectFit: 'cover',
-              objectPosition: 'center 10%',
-              zIndex: '-1'
-            }}
-          />
-        </div>
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-dark via-dark/90 to-dark"></div>
         <div className="tech-shape tech-shape-1"></div>
         <div className="tech-shape tech-shape-2"></div>
-        <div className="section hero-content grid md:grid-cols-12 gap-10 items-center mt-[35vh] md:mt-[40vh]">
-          <div className="reveal md:col-span-8 lg:col-span-7 z-10">
+        <div className="section hero-content grid md:grid-cols-12 gap-8 items-center">
+          <div className="reveal md:col-span-7 z-10 order-2 md:order-1">
             <div className="glass p-8 md:p-12 rounded-2xl">
               <span className="badge mb-4">AI Konzultant & Expert</span>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -206,6 +188,50 @@ function App() {
                     </svg>
                   </div>
                   <span className="ml-3 text-white/80">AI Expert</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="reveal md:col-span-5 z-10 order-1 md:order-2 mb-8 md:mb-0">
+            <div className="relative mx-auto max-w-md">
+              {/* SVG Mask/Frame */}
+              <div className="absolute -inset-4 bg-gradient-primary rounded-[60px_35px_60px_35px] rotate-3 opacity-70 blur-lg animate-pulse-slow"></div>
+              <div className="absolute -inset-4 bg-gradient-primary rounded-[35px_60px_35px_60px] -rotate-3 opacity-70 blur-lg animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+              
+              {/* White Background with SVG Clip Path */}
+              <div className="relative bg-white p-2 rounded-[40px_25px_40px_25px] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-light/20 to-secondary-light/20"></div>
+                
+                {/* SVG Decorative Elements */}
+                <svg className="absolute top-0 left-0 text-primary/10" width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
+                  <circle cx="15" cy="15" r="10" />
+                  <circle cx="40" cy="40" r="15" />
+                  <circle cx="80" cy="20" r="8" />
+                </svg>
+                
+                <svg className="absolute bottom-0 right-0 text-secondary/10" width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
+                  <circle cx="85" cy="85" r="10" />
+                  <circle cx="60" cy="60" r="15" />
+                  <circle cx="20" cy="80" r="8" />
+                </svg>
+                
+                {/* Fancy SVG Wave Mask */}
+                <div className="mask-container w-full h-full">
+                  <div className="relative w-full" style={{ clipPath: "url(#wave-mask)" }}>
+                    <img 
+                      src="/david_main.png" 
+                      alt="David Strejc" 
+                      className="w-full rounded-[30px_15px_30px_15px]"
+                    />
+                    <svg width="0" height="0" className="absolute">
+                      <defs>
+                        <clipPath id="wave-mask" clipPathUnits="objectBoundingBox">
+                          <path d="M0.0117,0.2047 C0.0039,0.0953,0.0039,0.0953,0.0117,0 L0.9883,0 C0.9961,0.0953,0.9961,0.0953,0.9883,0.2047 C0.875,0.25,0.75,0.3203,0.7109,0.3516 C0.6328,0.4141,0.5781,0.4844,0.5,0.5156 C0.4219,0.4844,0.3672,0.4141,0.2891,0.3516 C0.25,0.3203,0.125,0.25,0.0117,0.2047 L0.0117,1 L0.9883,1 L0.9883,0.2047 C0.875,0.25,0.75,0.3203,0.7109,0.3516 C0.6328,0.4141,0.5781,0.4844,0.5,0.5156 C0.4219,0.4844,0.3672,0.4141,0.2891,0.3516 C0.25,0.3203,0.125,0.25,0.0117,0.2047"></path>
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
