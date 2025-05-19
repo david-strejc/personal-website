@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -32,7 +32,7 @@
   }
   
   .glass-card {
-    @apply bg-glass backdrop-blur-md border border-white/10 rounded-2xl shadow-lg;
+    @apply bg-dark/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-lg;
   }
   
   .btn {
@@ -40,11 +40,11 @@
   }
   
   .btn-primary {
-    @apply btn bg-primary hover:bg-primary-light text-white;
+    @apply btn bg-primary hover:bg-primary-dark text-white;
   }
   
   .btn-secondary {
-    @apply btn bg-secondary hover:bg-secondary-light text-white;
+    @apply btn bg-secondary hover:bg-secondary-dark text-white;
   }
   
   .btn-outline {
@@ -70,9 +70,9 @@
 
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -87,7 +87,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(135deg, #0D47A1, #D32F2F);
+  background: linear-gradient(135deg, #06B6D4, #7C3AED);
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);

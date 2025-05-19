@@ -4,7 +4,7 @@
 }
 
 .header.scrolled {
-  @apply bg-dark/90 backdrop-blur-md border-b border-white/10;
+  @apply bg-dark/80 backdrop-blur-lg border-b border-white/10;
 }
 
 /* Hero section */
@@ -20,24 +20,36 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(211, 47, 47, 0.9));
-  z-index: 0;
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+.hero-image-container {
+  position: relative;
+  z-index: 0;
 }
 
 .hero-image {
   position: relative;
   z-index: 2;
   transition: all 0.5s ease;
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
 }
 
-.hero-image:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 30px rgba(211, 47, 47, 0.6);
+.hero-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0));
+  z-index: 3;
 }
 
 /* Services */
@@ -57,7 +69,7 @@
 
 .service-card:hover .service-icon {
   @apply text-secondary;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 /* Testimonials */
@@ -80,11 +92,11 @@
 
 /* Glow effects */
 .glow-primary {
-  box-shadow: 0 0 15px rgba(13, 71, 161, 0.5);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
 }
 
 .glow-secondary {
-  box-shadow: 0 0 15px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
 }
 
 /* Animation utility classes */
@@ -103,10 +115,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(13, 71, 161, 0.5);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
   }
   50% {
-    box-shadow: 0 0 25px rgba(211, 47, 47, 0.7);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
   }
 }
 
@@ -125,16 +137,16 @@
   bottom: -10px;
   left: 0;
   width: 60px;
-  height: as;
-  background: linear-gradient(to right, #D32F2F, #0D47A1);
+  height: 3px;
+  background: linear-gradient(to right, #06B6D4, #7C3AED);
   border-radius: 2px;
 }
 
 /* Tech shape background */
 .tech-shape {
   position: absolute;
-  z-index: -1;
-  opacity: 0.3;
+  z-index: 0;
+  opacity: 0.15;
 }
 
 .tech-shape-1 {
@@ -143,7 +155,7 @@
   width: 300px;
   height: 300px;
   border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
-  background: linear-gradient(135deg, #0D47A1, #42A5F5);
+  background: linear-gradient(135deg, #06B6D4, #22D3EE);
   animation: morphing 15s ease-in-out infinite;
 }
 
@@ -153,7 +165,7 @@
   width: 250px;
   height: 250px;
   border-radius: 24% 76% 35% 65% / 27% 35% 65% 73%;
-  background: linear-gradient(135deg, #D32F2F, #EF5350);
+  background: linear-gradient(135deg, #7C3AED, #A78BFA);
   animation: morphing 15s ease-in-out infinite reverse;
 }
 
@@ -220,4 +232,77 @@
 
 .btn-hover-effect:hover::before {
   left: 100%;
+}
+
+/* Fancy link underline */
+.fancy-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.fancy-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #06B6D4, #7C3AED);
+  transition: all 0.3s ease;
+}
+
+.fancy-link:hover::after {
+  width: 100%;
+}
+
+/* Cool highlights */
+.highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0));
+  z-index: -1;
+  transform: translateY(4px) rotate(-1deg);
+}
+
+/* Badge */
+.badge {
+  @apply inline-block px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary;
+}
+
+.badge-secondary {
+  @apply bg-secondary/20 text-secondary-light;
+}
+
+/* Section divider */
+.section-divider {
+  position: relative;
+  height: 3rem;
+  margin: 2rem 0;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.section-divider-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @apply bg-dark text-primary rounded-full p-3;
 }

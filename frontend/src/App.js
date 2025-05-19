@@ -55,6 +55,20 @@ function App() {
     return () => window.removeEventListener('scroll', handleParallax);
   }, []);
 
+  // Funkce pro čistou tabulátor navigaci
+  const handleTabKey = (e) => {
+    if (e.key === 'Tab') {
+      document.body.classList.add('user-is-tabbing');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleTabKey);
+    return () => {
+      window.removeEventListener('keydown', handleTabKey);
+    };
+  }, []);
+
   return (
     <div className="App bg-dark min-h-screen">
       {/* Header & Navigation */}
@@ -64,11 +78,11 @@ function App() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#home" className="text-white hover:text-secondary transition-colors duration-300">Úvod</a>
-            <a href="#about" className="text-white hover:text-secondary transition-colors duration-300">O mně</a>
-            <a href="#services" className="text-white hover:text-secondary transition-colors duration-300">Služby</a>
-            <a href="#testimonials" className="text-white hover:text-secondary transition-colors duration-300">Reference</a>
-            <a href="#contact" className="text-white hover:text-secondary transition-colors duration-300">Kontakt</a>
+            <a href="#home" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Úvod</a>
+            <a href="#about" className="text-white hover:text-primary transition-colors duration-300 fancy-link">O mně</a>
+            <a href="#services" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Služby</a>
+            <a href="#testimonials" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Reference</a>
+            <a href="#contact" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Kontakt</a>
           </nav>
           
           {/* Mobile Menu Button */}
@@ -84,11 +98,11 @@ function App() {
       </header>
       
       {/* Mobile Menu */}
-      <div className={`mobile-menu fixed top-0 right-0 w-full h-full bg-dark/95 backdrop-blur-lg z-40 flex flex-col justify-center items-center transition-all duration-300 ${isMobileMenuOpen ? 'open' : ''}`}>
+      <div className={`mobile-menu fixed top-0 right-0 w-full h-full bg-darker/95 backdrop-blur-lg z-40 flex flex-col justify-center items-center transition-all duration-300 ${isMobileMenuOpen ? 'open' : ''}`}>
         <nav className="flex flex-col space-y-6 items-center">
           <a 
             href="#home" 
-            className="mobile-nav-item text-2xl text-white hover:text-secondary transition-colors duration-300" 
+            className="mobile-nav-item text-2xl text-white hover:text-primary transition-colors duration-300" 
             style={{"--item-index": 0}}
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -96,7 +110,7 @@ function App() {
           </a>
           <a 
             href="#about" 
-            className="mobile-nav-item text-2xl text-white hover:text-secondary transition-colors duration-300" 
+            className="mobile-nav-item text-2xl text-white hover:text-primary transition-colors duration-300" 
             style={{"--item-index": 1}}
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -104,7 +118,7 @@ function App() {
           </a>
           <a 
             href="#services" 
-            className="mobile-nav-item text-2xl text-white hover:text-secondary transition-colors duration-300" 
+            className="mobile-nav-item text-2xl text-white hover:text-primary transition-colors duration-300" 
             style={{"--item-index": 2}}
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -112,7 +126,7 @@ function App() {
           </a>
           <a 
             href="#testimonials" 
-            className="mobile-nav-item text-2xl text-white hover:text-secondary transition-colors duration-300" 
+            className="mobile-nav-item text-2xl text-white hover:text-primary transition-colors duration-300" 
             style={{"--item-index": 3}}
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -120,7 +134,7 @@ function App() {
           </a>
           <a 
             href="#contact" 
-            className="mobile-nav-item text-2xl text-white hover:text-secondary transition-colors duration-300" 
+            className="mobile-nav-item text-2xl text-white hover:text-primary transition-colors duration-300" 
             style={{"--item-index": 4}}
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -131,47 +145,64 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="hero min-h-screen flex items-center relative">
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1557683304-673a23048d34" 
-            alt="Pozadí" 
-            className="w-full h-full object-cover"
+            src="/david_main.png" 
+            alt="David Strejc" 
+            className="w-full h-full object-cover object-top"
           />
         </div>
         <div className="tech-shape tech-shape-1"></div>
         <div className="tech-shape tech-shape-2"></div>
-        <div className="section hero-content grid md:grid-cols-2 gap-10 items-center">
-          <div className="reveal">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="block text-white">David Strejc</span>
-              <span className="gradient-text">AI Konzultant</span>
-            </h1>
-            <p className="text-xl text-white/80 mb-8">
-              Pomáhám firmám implementovat umělou inteligenci a najít optimální řešení v rychle se měnícím technologickém světě.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="btn-primary btn-hover-effect">Kontaktujte mě</a>
-              <a href="#services" className="btn-outline">Mé služby</a>
-            </div>
-          </div>
-          <div className="relative reveal" style={{transitionDelay: '0.2s'}}>
-            <div className="hero-image rounded-2xl overflow-hidden glow-primary animate-pulse-glow">
-              <img 
-                src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAGQAZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z" 
-                alt="David Strejc" 
-                className="w-full h-auto"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "https://images.unsplash.com/photo-1557683304-673a23048d34";
-                }}
-              />
+        <div className="section hero-content grid md:grid-cols-12 gap-10 items-center">
+          <div className="reveal md:col-span-7 z-10">
+            <div className="glass p-8 md:p-12 rounded-2xl">
+              <span className="badge mb-4">AI Konzultant & Expert</span>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="block text-white mb-2">David Strejc</span>
+                <span className="gradient-text">Budoucnost AI ve vašich rukou</span>
+              </h1>
+              <p className="text-xl text-white/80 mb-8">
+                Pomáhám firmám implementovat umělou inteligenci a najít optimální řešení v rychle se měnícím technologickém světě.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a href="#contact" className="btn-primary btn-hover-effect">Kontaktujte mě</a>
+                <a href="#services" className="btn-outline">Mé služby</a>
+              </div>
+              
+              <div className="flex flex-wrap gap-6 mt-12">
+                <div className="flex items-center">
+                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <span className="ml-3 text-white/80">Více než 19 let v IT</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <span className="ml-3 text-white/80">Zkušený konzultant</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                  </div>
+                  <span className="ml-3 text-white/80">AI Expert</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="section relative overflow-hidden">
+      <section id="about" className="section relative overflow-hidden bg-gradient-dark">
         <div className="tech-shape tech-shape-1" style={{top: '50%', right: '10%'}}></div>
         <div className="mb-16 text-center reveal">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Kdo jsem?</h2>
@@ -258,7 +289,7 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="section relative overflow-hidden bg-gradient-to-br from-dark via-dark/95 to-primary/20">
+      <section id="services" className="section relative overflow-hidden bg-gradient-to-br from-dark via-dark/95 to-primary/5">
         <div className="tech-shape tech-shape-2" style={{bottom: '20%', left: '5%'}}></div>
         <div className="mb-16 text-center reveal">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Moje služby</h2>
@@ -281,19 +312,19 @@ function App() {
             </p>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Analýza současného stavu
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Definice cílů a KPIs
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Plán implementace AI
@@ -314,19 +345,19 @@ function App() {
             </p>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Výběr optimálních AI nástrojů
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Integrace s existujícími systémy
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Školení týmu a podpora
@@ -347,19 +378,19 @@ function App() {
             </p>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Analýza pracovních postupů
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Implementace automatizačních nástrojů
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Měření a optimalizace výsledků
@@ -380,19 +411,19 @@ function App() {
             </p>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Workshopy a školení
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Trendy a inovace v AI
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Průběžná podpora
@@ -413,19 +444,19 @@ function App() {
             </p>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Business Intelligence
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Prediktivní analýza
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Vizualizace dat
@@ -446,19 +477,19 @@ function App() {
             </p>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Návrh cloudové architektury
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Migrace do cloudu
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Optimalizace nákladů
@@ -469,7 +500,8 @@ function App() {
       </section>
       
       {/* Testimonials Section */}
-      <section id="testimonials" className="section">
+      <section id="testimonials" className="section relative overflow-hidden bg-gradient-dark">
+        <div className="tech-shape tech-shape-1" style={{top: '10%', right: '5%'}}></div>
         <div className="mb-16 text-center reveal">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Reference</h2>
           <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
@@ -639,17 +671,17 @@ function App() {
               <div className="mt-8">
                 <h4 className="text-lg font-semibold mb-4">Najdete mě na</h4>
                 <div className="flex space-x-4">
-                  <a href="#" className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/30 transition-colors">
+                  <a href="#" className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/30 transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
                     </svg>
                   </a>
-                  <a href="#" className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/30 transition-colors">
+                  <a href="#" className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/30 transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                   </a>
-                  <a href="#" className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/30 transition-colors">
+                  <a href="#" className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/30 transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                     </svg>
@@ -662,7 +694,7 @@ function App() {
       </section>
       
       {/* Footer */}
-      <footer className="py-10 px-6 bg-dark border-t border-white/10">
+      <footer className="py-10 px-6 bg-darker border-t border-white/10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
           <div>
             <h3 className="text-2xl font-bold gradient-text mb-4">David Strejc</h3>
@@ -692,19 +724,19 @@ function App() {
             <h4 className="text-lg font-bold mb-4">Rychlé odkazy</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#home" className="text-white/70 hover:text-white transition-colors">Úvod</a>
+                <a href="#home" className="text-white/70 hover:text-white transition-colors fancy-link">Úvod</a>
               </li>
               <li>
-                <a href="#about" className="text-white/70 hover:text-white transition-colors">O mně</a>
+                <a href="#about" className="text-white/70 hover:text-white transition-colors fancy-link">O mně</a>
               </li>
               <li>
-                <a href="#services" className="text-white/70 hover:text-white transition-colors">Služby</a>
+                <a href="#services" className="text-white/70 hover:text-white transition-colors fancy-link">Služby</a>
               </li>
               <li>
-                <a href="#testimonials" className="text-white/70 hover:text-white transition-colors">Reference</a>
+                <a href="#testimonials" className="text-white/70 hover:text-white transition-colors fancy-link">Reference</a>
               </li>
               <li>
-                <a href="#contact" className="text-white/70 hover:text-white transition-colors">Kontakt</a>
+                <a href="#contact" className="text-white/70 hover:text-white transition-colors fancy-link">Kontakt</a>
               </li>
             </ul>
           </div>
@@ -713,19 +745,19 @@ function App() {
             <h4 className="text-lg font-bold mb-4">Kontakt</h4>
             <ul className="space-y-3">
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white/50 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:info@davidstrejc.cz" className="text-white/70 hover:text-white transition-colors">info@davidstrejc.cz</a>
+                <a href="mailto:info@davidstrejc.cz" className="text-white/70 hover:text-white transition-colors fancy-link">info@davidstrejc.cz</a>
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white/50 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <a href="tel:+420123456789" className="text-white/70 hover:text-white transition-colors">+420 123 456 789</a>
+                <a href="tel:+420123456789" className="text-white/70 hover:text-white transition-colors fancy-link">+420 123 456 789</a>
               </li>
               <li className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white/50 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
