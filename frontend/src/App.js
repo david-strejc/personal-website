@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -83,7 +84,7 @@ function App() {
               <a href="#about" className="text-white hover:text-primary transition-colors duration-300 fancy-link">O mně</a>
               <a href="#services" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Služby</a>
               <a href="#testimonials" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Reference</a>
-              <a href="#contact" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Kontakt</a>
+              <Link to="/contact" className="text-white hover:text-primary transition-colors duration-300 fancy-link">Kontakt</Link>
             </nav>
             
             {/* Social Icons */}
@@ -163,14 +164,14 @@ function App() {
           >
             Reference
           </a>
-          <a 
-            href="#contact" 
-            className="mobile-nav-item text-2xl text-white hover:text-primary transition-colors duration-300" 
+          <Link
+            to="/contact"
+            className="mobile-nav-item text-2xl text-white hover:text-primary transition-colors duration-300"
             style={{"--item-index": 4}}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Kontakt
-          </a>
+          </Link>
           
           {/* Social Icons Mobile */}
           <div className="flex space-x-6 mt-8 mobile-nav-item" style={{"--item-index": 5}}>
@@ -220,7 +221,7 @@ function App() {
                 Pomáhám firmám implementovat umělou inteligenci a najít optimální řešení v rychle se měnícím technologickém světě.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="#contact" className="btn-primary btn-hover-effect">Kontaktujte mě</a>
+                <Link to="/contact" className="btn-primary btn-hover-effect">Kontaktujte mě</Link>
                 <a href="#services" className="btn-outline">Mé služby</a>
               </div>
               
@@ -827,7 +828,7 @@ function App() {
                 <a href="#testimonials" className="text-white/70 hover:text-white transition-colors fancy-link">Reference</a>
               </li>
               <li>
-                <a href="#contact" className="text-white/70 hover:text-white transition-colors fancy-link">Kontakt</a>
+                <Link to="/contact" className="text-white/70 hover:text-white transition-colors fancy-link">Kontakt</Link>
               </li>
             </ul>
           </div>
